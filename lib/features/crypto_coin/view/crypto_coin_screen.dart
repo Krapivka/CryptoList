@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crypto_coins_list/repositories/crypto_coins/abstract_coins_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,8 +46,8 @@ class _CryptoCoinScreenState extends State<CryptoCoinScreen> {
                     padding: const EdgeInsets.all(15),
                     width: MediaQuery.of(context).size.width / 1.01,
                     child: Column(children: <Widget>[
-                      Image.network(
-                        details.fullImageUrl,
+                      CachedNetworkImage(
+                        imageUrl: details.fullImageUrl,
                         height: 180,
                         width: 180,
                       ),

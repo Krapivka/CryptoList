@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crypto_coins_list/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CryptoCoinTile extends StatelessWidget {
   const CryptoCoinTile(
@@ -14,11 +16,12 @@ class CryptoCoinTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Image.network(
-          imgUrl,
-          height: 50,
-          width: 50,
-        ),
+        leading: CachedNetworkImage(
+            imageUrl: imgUrl,
+            height: 50,
+            width: 50,
+            placeholder: ((context, imgUrl) =>
+                const CircularProgressIndicator())),
         title: Text(
           coinName,
           style: Theme.of(context).textTheme.bodyMedium,
