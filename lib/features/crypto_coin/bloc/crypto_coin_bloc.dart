@@ -16,8 +16,9 @@ class CryptoCoinBloc extends Bloc<CryptoCoinEvent, CryptoCoinState> {
         if (state is! CryptoCoinLoaded) {
           emit(CryptoCoinLoading());
         }
-        final cryptoCoinDetail =
+        var cryptoCoinDetail =
             await coinsRepository.getCoinDetail(event.coinName);
+
         emit(CryptoCoinLoaded(coin: cryptoCoinDetail));
       } catch (e, st) {
         emit(CryptoCoinLoadingFailed(e));

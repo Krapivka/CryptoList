@@ -1,4 +1,5 @@
 import 'package:crypto_coins_list/repositories/crypto_coins/abstract_coins_repository.dart';
+import 'package:crypto_coins_list/repositories/firestore_database/firestore_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -64,6 +65,12 @@ class CryptoCoinRepository implements AbstractCoinsRepository {
     final dataRaw = data['RAW'] as Map<String, dynamic>;
     final dataCoin = ((dataRaw)[coinName]) as Map<String, dynamic>;
     final usdData = ((dataCoin)["USD"]) as Map<String, dynamic>;
+    // FirestoreRepository()
+    //     .addCryptoCoin(usdData)
+    //     .then((value) => GetIt.I.get<Talker>().info("CryptoCoin added"))
+    //     .catchError((error) =>
+    //         GetIt.I.get<Talker>().error("Failed to CryptoCoin: $error"));
+    // ;
     final details = CryptoCoinDetail.fromJson(usdData);
 
     return CryptoCoin(
